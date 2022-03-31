@@ -162,7 +162,8 @@
                 </div>
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
                     <p class="mb-4">Veuillez remplir le formulaire ci-dessous pour obtenir plus d’informations sur La Mezardière.<!--  <a href="https://htmlcodex.com/contact-form">Download Now</a>.</p>-->
-                    <form action="mail.php" method="POST">
+                    <!-- <form action="mail.php" method="POST"> -->
+                        <form method="POST"> 
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <div class="form-floating">
@@ -193,6 +194,13 @@
                             </div>
                         </div>
                     </form>
+                    <?php
+                        if (isset($_POST['message'])) {
+                            $retour = mail('rualgondol@gmail.com', 'Envoi depuis la page Contact', $_POST['message'], 'From: webmaster@lamezardiere.mu' . "\r\n" . 'Reply-to: ' . $_POST['email']);
+                            if($retour)
+                                echo '<p>Votre message a bien été envoyé.</p>';
+                        }
+                    ?>
                 </div>
             </div>
         </div>
