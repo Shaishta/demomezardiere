@@ -1,3 +1,19 @@
+<?php
+$name = $_POST['name'];
+$email = $_POST['email'];
+$message = $_POST['message'];
+
+// $subject = 'Message from a site visitor '.$name;
+
+
+$mailheader = "From:".$name."<".$email.">\r\n"
+
+$recipient = "shaishtapandea@gmail.com"; //to send mail to the person
+
+mail($recipient, $subject, $message, $mailheader)
+or die("Message failed. Please, send an email to shaishtapandea@gmail.com");
+
+echo'
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -150,7 +166,7 @@
                         &copy; <a href="#">La Mezardière Résidence</a>, All Right Reserved.
                     </div>
                     <div class="col-md-6 text-center text-md-end">
-                        <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+                        <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you would like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
                         Designed By M-Unit</a>
                         <!-- <br> Distributed By: <a class="border-bottom" href="https://themewagon.com" target="_blank">ThemeWagon</a> -->
                     </div>
@@ -181,4 +197,5 @@
     <script src="js/main.js"></script>
 </body>
 
-</html>
+</html>';
+?>
