@@ -1,19 +1,47 @@
 <?php
-$name = $_POST['name'];
-$email = $_POST['email'];
-$message = $_POST['message'];
+//Import PHPMailer classes into the global namespace
+//These must be at the top of your script, not inside a function
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
 
-// $subject = 'Message from a site visitor '.$name;
+///Path to 
+require 'PHPMailer/src/Exception.php';
+require 'PHPMailer/src/PHPMailer.php'; 
+require 'PHPMailer/src/SMTP.php';
 
+// Load Composer's autoloader
+//require 'vendor/autoload.php';
 
-$mailheader = "From:".$name."<".$email.">\r\n"
+$mail=new PHPMailer(true);
 
-$recipient = "shaishtapandea@gmail.com"; //to send mail to the person
+try {
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $message = $_POST['message'];
 
-mail($recipient, $subject, $message, $mailheader)
-or die("Message failed. Please, send an email to shaishtapandea@gmail.com");
+    $subject = 'Message from a site visitor '.$name;
 
-echo'
+    $mail->CharSet = 'UTF-8';
+
+    $mail->IsSMTP();
+    $mail->Host       = 'smtp.gmail.com';
+
+    $mail->SMTPSecure = 'tls';
+    $mail->Port       = 587;
+    // $mail->SMTPDebug  = 1;
+    $mail->SMTPAuth   = true;
+
+    $mail->Username   = 'shaishta127@gmail.com';
+    $mail->Password   = 'Hello1271';
+
+    $mail->SetFrom($email, $name);
+    $mail->addAddress($email, $name);
+    $mail->Subject    = $subject;
+    $mail->MsgHTML($message);
+
+    $mail->send();
+    echo'
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -198,4 +226,14 @@ echo'
 </body>
 
 </html>';
-?>
+
+} catch (Exception $e) {
+    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+}
+
+// $mailheader = "From:".$name."<".$email.">\r\n";
+
+// $recipient = "shaishtapandea@gmail.com"; //to send mail to the person
+
+// mail($recipient, $subject, $message, $mailheader)
+// or die("Message failed. Please, send an email to shaishtapandea@gmail.com");
