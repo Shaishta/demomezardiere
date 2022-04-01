@@ -18,7 +18,11 @@ $mail=new PHPMailer(true);
 try {
     $name = $_POST['name'];
     $email = $_POST['email'];
-    $message = $_POST['message'];
+    $messagevisitor = $_POST['message'];
+
+    $message = $_POST['name'].' vous a envoyé un email.<br> Voici son message: '
+    .$messagevisitor.
+    '<br> son adresse email est: '.$email.
 
     $subject = 'Message from a site visitor '.$name;
 
@@ -35,8 +39,8 @@ try {
     $mail->Username   = 'shaishta127@gmail.com';
     $mail->Password   = 'Hello1271';
 
-    $mail->SetFrom($email, $name);
-    $mail->addAddress($email, $name);
+    $mail->SetFrom('shaishta127@gmail.com', 'Shaishta');
+    $mail->addAddress('ashaishta127@gmail.com', 'Shaishta');
     $mail->Subject    = $subject;
     $mail->MsgHTML($message);
 
